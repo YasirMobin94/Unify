@@ -7,7 +7,6 @@ import 'package:fluffychat/pages/invitation_selection/invitation_selection_view.
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:integration_test/integration_test.dart';
 
 import 'package:fluffychat/main.dart' as app;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,7 +16,7 @@ import 'extensions/wait_for.dart';
 import 'users.dart';
 
 void main() {
-  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  // IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   group(
     'Integration Test',
