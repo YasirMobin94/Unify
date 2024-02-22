@@ -1,11 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'package:badges/badges.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
-import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
@@ -13,6 +6,12 @@ import 'package:fluffychat/pages/chat_list/navi_rail_item.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/unread_rooms_badge.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
+import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
+
 import '../../widgets/matrix.dart';
 import 'chat_list_body.dart';
 import 'start_chat_fab.dart';
@@ -70,12 +69,12 @@ class ChatListView extends StatelessWidget {
           ),
           label: L10n.of(context)!.chats,
         ),
-      if (controller.spaces.isNotEmpty)
-        const NavigationDestination(
-          icon: Icon(Icons.workspaces_outlined),
-          selectedIcon: Icon(Icons.workspaces),
-          label: 'Spaces',
-        ),
+      // if (controller.spaces.isNotEmpty)
+      const NavigationDestination(
+        icon: Icon(Icons.workspaces_outlined),
+        selectedIcon: Icon(Icons.workspaces),
+        label: 'Spaces',
+      ),
     ];
   }
 
@@ -183,22 +182,23 @@ class ChatListView extends StatelessWidget {
                   behavior: HitTestBehavior.translucent,
                   child: Scaffold(
                     body: ChatListViewBody(controller),
-                    bottomNavigationBar: controller.displayNavigationBar
-                        ? NavigationBar(
-                            elevation: 4,
-                            labelBehavior:
-                                NavigationDestinationLabelBehavior.alwaysHide,
-                            height: 64,
-                            shadowColor:
-                                Theme.of(context).colorScheme.onBackground,
-                            surfaceTintColor:
-                                Theme.of(context).colorScheme.background,
-                            selectedIndex: controller.selectedIndex,
-                            onDestinationSelected:
-                                controller.onDestinationSelected,
-                            destinations: getNavigationDestinations(context),
-                          )
-                        : null,
+                    bottomNavigationBar:
+                        // controller.displayNavigationBar
+                        //     ?
+
+                        NavigationBar(
+                      elevation: 4,
+                      labelBehavior:
+                          NavigationDestinationLabelBehavior.alwaysShow,
+                      height: 64,
+                      shadowColor: Theme.of(context).colorScheme.onBackground,
+                      surfaceTintColor:
+                          Theme.of(context).colorScheme.background,
+                      selectedIndex: controller.selectedIndex,
+                      onDestinationSelected: controller.onDestinationSelected,
+                      destinations: getNavigationDestinations(context),
+                    ),
+                    // : null,
                     floatingActionButton: KeyBoardShortcuts(
                       keysToPress: {
                         LogicalKeyboardKey.controlLeft,
